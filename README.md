@@ -3,9 +3,14 @@
 ### Download NodeJs
 Go to [Node.js site](https://nodejs.org) and download NodeJS.
 <img src="/doc-img/nodejs-site.png" alt="Nodejs Website"/>
-Download the LTS Version since it is the Recommended version.
-<img src="/doc-img/download nodejs.png" alt="Nodejs Downloaded"/>
+Download and install the LTS Version (Recommended) of your respective operating system.
 
 ### Install NodeJs (Operating system: Ubuntu 20.04)
+On Ubuntu terminal run the command
+
+```
+$ sudo apt install nodejs
+
+```
 
 
