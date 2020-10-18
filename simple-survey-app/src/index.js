@@ -1,18 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+
 class SimpleSurveyComponent extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      full_name: ''
-    };
-  }
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     full_name: ''
+  //   };
+  // }
 
-  inputFormchangeHandler=e => {
-     console.log(this.state.full_name);
-  }
+  // inputFormchangeHandler=e => {
+  //    console.log(this.state.full_name);
+  // }
 
   render(){
     return(
@@ -22,12 +23,12 @@ class SimpleSurveyComponent extends React.Component {
           <div>
             <label>
               Enter Full Name : 
-              <input type= "text" name= "full_name" value= {this.state.full_name} onChange={this.inputFormchangeHandler}>
+              <input type= "text" name= "full_name">
               </input>
             </label>
           </div>
         </form>
-        <button onClick={this.inputFormchangeHandler}> Submit</button>
+        <button> Submit</button>
       </div>
     )
   }
