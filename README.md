@@ -71,8 +71,9 @@ Note that the development build is not optimized.
 To create a production build, use npm run build.
 
 ```
-The browser will open http://localhost:3000/ . This is what will be visible
-<img src="/doc-img/create-react-app.png" alt="Create React app output on the web"/>
+The browser will open http://localhost:3000/ . 
+This is what will be visible on the browser.
+<img src="/doc-img/create-react-app.png" alt="Create React app output on the browser"/>
 
 
 
