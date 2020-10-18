@@ -1,17 +1,37 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+class SimpleSurveyComponent extends React.Component {
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+  constructor(props) {
+    super(props);
+    this.state = {
+      full_name: ''
+    };
+  }
+
+  inputFormchangeHandler=e => {
+     console.log(this.state.full_name);
+  }
+
+  render(){
+    return(
+      <div>
+        <h3> Simple Survey Application</h3>
+        <form>
+          <div>
+            <label>
+              Enter Full Name : 
+              <input type= "text" name= "full_name" value= {this.state.full_name} onChange={this.inputFormchangeHandler}>
+              </input>
+            </label>
+          </div>
+        </form>
+        <button onClick={this.inputFormchangeHandler}> Submit</button>
+      </div>
+    )
+  }
+}
+
+const element= <SimpleSurveyComponent></SimpleSurveyComponent>
+ReactDOM.render(element, document.getElementById("root"));

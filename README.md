@@ -47,7 +47,7 @@ $ npm --version
 
 ```
 
-05. Install text editor such as VisualStudio Code
+05. Install text editor such as VisualStudio Code (You can use your prefered text editor)
 Follow Download and installation instructions in [Visual Studio Website](https://code.visualstudio.com/download).
 <img src="/doc-img/vscodesite.png" alt="Visual Studio Code"/>
 
@@ -64,7 +64,7 @@ cd simple-survey-app
 npm start
 
 ```
-Output in the terminal will be
+Output in the terminal will be:
 
 ```
 You can now view simple-survey-app in the browser.
@@ -75,11 +75,33 @@ You can now view simple-survey-app in the browser.
 Note that the development build is not optimized.
 To create a production build, use npm run build.
 
-```
+
 The browser will open http://localhost:3000/ . 
 This is what will be visible on the browser.
 
-<img src="/doc-img/create-react-app outout.png" alt="Create React app output on the browser"/>
+<img src="/doc-img/create-react-app output.png" alt="Create React app output on the browser"/>
+
+```
+You will see the files of the created app visible in the Opened File Explorer of the text editor.
+If you expand the folder *simple-survey-app*  it will look as shown below.
+
+<img src="/doc-img/files-createapp.png" alt="Create React app output on the browser"/>
+
+
+
+## Step 1 : Create React Elements
+We will Create our React Element using JSX. 
+First navigate to the *src* folder and open *index.js* file.
+
+We will remove everything in that file and leave only the ones shown in the image below:
+<img src="/doc-img/default-index-js.png" alt="Remove defaults in indexjs"/>
+
+
+
+```
+```
+
+
 
 
 
