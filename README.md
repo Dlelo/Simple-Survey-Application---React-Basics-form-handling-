@@ -34,23 +34,28 @@ $ sudo apt install npm
 
 ```
 
-02. Confirm npm is installed by confirming the version with the command
+04. Confirm npm is installed by confirming the version with the command
 
 ```
 $ npm --version
 
 ```
-
-```
 ### Output
 
+```
 6.14.4
 
 ```
 
+05. Install text editor such as VisualStudio Code
+Follow Download and installation instructions in [Visual Studio Website](https://code.visualstudio.com/download).
+<img src="/doc-img/vscodesite.png" alt="Visual Studio Code"/>
+
+
 
 ### Create React App
-The app was kick started with [Create React App ](https://reactjs.org/docs/create-a-new-react-app.html#create-react-app) 
+The app was kick started with [Create React App ](https://reactjs.org/docs/create-a-new-react-app.html#create-react-app) .
+Open VS Code Terminal and type
 
 
 ```
@@ -73,7 +78,11 @@ To create a production build, use npm run build.
 ```
 The browser will open http://localhost:3000/ . 
 This is what will be visible on the browser.
-<img src="/doc-img/create-react-app.png" alt="Create React app output on the browser"/>
+
+<img src="/doc-img/create-react-app outout.png" alt="Create React app output on the browser"/>
+
+
+
 
 
 
