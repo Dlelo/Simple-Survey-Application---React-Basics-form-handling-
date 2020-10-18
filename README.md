@@ -98,7 +98,7 @@ We will remove everything in that file and leave only the imports shown in the i
 <img src="/doc-img/default-index-js.png" alt="Remove defaults in indexjs"/>
 
 
-We will create a react class Component *SimpleSurveyComponent" which will have a *render()* method that will *return* a simple form.
+We will create a react class Component *SimpleSurveyComponent* which will have a *render()* method that will *return* a simple form.
 
 ```
 class SimpleSurveyComponent extends React.Component {
@@ -125,7 +125,8 @@ const element= <SimpleSurveyComponent></SimpleSurveyComponent>
 ReactDOM.render(element, document.getElementById("root"));
 
 ```
-
+The output
+<img src="/doc-img/simple-form.png" alt="Remove defaults in indexjs"/>
 
 
 
