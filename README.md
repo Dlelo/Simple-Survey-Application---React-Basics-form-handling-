@@ -1,5 +1,10 @@
 # Simple-Survey-Application---React-Basics-form-handling
 
+## Introduction
+Form are necessary in an application. They are used to login a user, register a user, get user feeback, get user details and so much more. 
+
+This tutorial is useful for beginners who have never interracted with react, those who have little knowledge on react as well as the expert react developers who want a reminder on the basics of handling react forms.
+
 ## Step 1 : Set-up 
 ### Download NodeJs (Windows)
 Go to [Node.js site](https://nodejs.org) and download NodeJS.
@@ -47,7 +52,7 @@ $ npm --version
 
 ```
 
-05. Install text editor such as VisualStudio Code
+05. Install text editor such as VisualStudio Code (You can use your prefered text editor)
 Follow Download and installation instructions in [Visual Studio Website](https://code.visualstudio.com/download).
 <img src="/doc-img/vscodesite.png" alt="Visual Studio Code"/>
 
@@ -64,7 +69,7 @@ cd simple-survey-app
 npm start
 
 ```
-Output in the terminal will be
+Output in the terminal will be:
 
 ```
 You can now view simple-survey-app in the browser.
@@ -76,12 +81,109 @@ Note that the development build is not optimized.
 To create a production build, use npm run build.
 
 ```
+
 The browser will open http://localhost:3000/ . 
 This is what will be visible on the browser.
 
-<img src="/doc-img/create-react-app outout.png" alt="Create React app output on the browser"/>
+<img src="/doc-img/create-react-app output.png" alt="Create React app output on the browser"/>
+
+You will see the files of the created app visible in the Opened File Explorer of the text editor.
+If you expand the folder *simple-survey-app*  it will look as shown below.
+
+<img src="/doc-img/files-createapp.png" alt="Create React app output on the browser"/>
 
 
+
+## Step 2 : Create React Class Components
+We will Create our React Element using JSX. 
+First navigate to the *src* folder and open *index.js* file.
+
+We will remove everything in that file and leave only the imports as shown in the image below:
+
+<img src="/doc-img/default-index-js.png" alt="Remove defaults in indexjs"/>
+
+
+We will create a react class Component *SimpleSurveyComponent* 
+
+In the class we will implement *render()* method that will *return* a simple form in a *div* container.
+
+```
+class SimpleSurveyComponent extends React.Component {
+  render(){
+    return(
+      <div>
+        <h3> Simple Survey Application</h3>
+        <form>
+          <div>
+            <label>
+              Enter Full Name : 
+              <input type= "text" name= "full_name">
+              </input>
+            </label>
+          </div>
+        </form>
+        <button> Submit</button>
+      </div>
+    )
+  }
+}
+
+const element= <SimpleSurveyComponent></SimpleSurveyComponent>
+ReactDOM.render(element, document.getElementById("root"));
+
+```
+The output
+<img src="/doc-img/simple-form.png" alt="Remove defaults in indexjs"/>
+
+
+## Step 3 : Controlled Input
+
+In this simple survey app, react will control the values of the input field . 
+
+This is because the the input of the user will be part of the application *state* .
+
+Just before the **render()** method of the *SimpleSurveyComponent* class
+
+We will add a constructor to the above class that accepts properties as an argument. 
+The properties will be passed to a base constructor using the *super* key word. 
+We will initialize the component *state*  with a *Property* called **full_name** that holds an empty string as its value. 
+```
+
+constructor(props) {
+    super(props);
+    this.state = {
+      full_name: ''
+    };
+  }
+
+```
+## Step 4 : Managing forms State
+
+We bind the value of the input text field to the value from the **state object**.
+
+```
+<input type= "text" name= "full_name" value={this.state.full_name}>
+              </input> 
+```
+
+A method called *inputChangeHandler*(e) is created, that will accept an input which will have the information of entered form input field value in this case the input text value. 
+It will have a *setState()* method that will inject the form text input value to the **State Object**
+
+```
+formInputChangeHandler = e=> {
+    this.setState({full_name: e.target.value})
+  }
+
+```
+
+
+
+
+
+
+
+
+## Step 5 : Validating forms and show validation messages
 
 
 
