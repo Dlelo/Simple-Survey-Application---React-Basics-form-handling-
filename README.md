@@ -159,22 +159,96 @@ constructor(props) {
 ```
 ## Step 4 : Managing forms State
 
-We bind the value of the input text field to the value from the **state object**.
+We bind the value of the input text field and the value is obtained from the value of the **state object**.
 
 ```
 <input type= "text" name= "full_name" value={this.state.full_name}>
               </input> 
 ```
 
-A method called *inputChangeHandler*(e) is created, that will accept an input which will have the information of entered form input field value in this case the input text value. 
-It will have a *setState()* method that will inject the form text input value to the **State Object**
+A method called *forinputChangeHandler*(e) is created, that will accept an input which will have the information of entered form input field value in this case the input text value. 
+It will have a *setState()* method that will update the value of form text input value to the **State Object** . 
 
 ```
-formInputChangeHandler = e=> {
+onformInputChangeHandler = e=> {
     this.setState({full_name: e.target.value})
   }
 
 ```
+The above method will use to listen to the text input whenever there is a change in the input using the **onChange()** input attribute. 
+
+```
+<input type= "text" name= "full_name" value={this.state.full_name} onChange={this.onformInputChangeHandler}>
+              </input>
+```
+
+We will create a method to handle form submit. This will output the **full_name** on the console.
+
+```
+onSurveyFormSubmit=()=> {
+    console.log(this.state.full_name)
+  }
+```
+
+We will then add a click event on the Submit button. 
+
+```
+ <button onclick={this.onSurveyFormSubmit}> Submit</button>
+```
+
+The code so far will be as below:
+
+```
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+
+class SimpleSurveyComponent extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      full_name: ''
+    };
+  }
+
+  onformInputChangeHandler = e=> {
+    this.setState({full_name: e.target.value})
+  }
+
+  onSurveyFormSubmit=()=> {
+    console.log(this.state.full_name)
+  }
+
+  render(){
+    return(
+      <div>
+        <h3> Simple Survey Application</h3>
+        <form>
+          <div>
+            <label>
+              Enter Full Name : 
+              <input type= "text" name= "full_name" value={this.state.full_name} onChange={this.onformInputChangeHandler}>
+              </input>
+            </label>
+          </div>
+        </form>
+        <button onClick={this.onSurveyFormSubmit}> Submit</button>
+        <div>
+        </div>
+      </div>
+      
+    )
+  }
+}
+
+const element= <SimpleSurveyComponent></SimpleSurveyComponent>
+ReactDOM.render(element, document.getElementById("root"));
+
+```
+The output on the browser:
+<img src="/doc-img/submit-form.png" alt="Remove defaults in indexjs"/>
+
 
 
 

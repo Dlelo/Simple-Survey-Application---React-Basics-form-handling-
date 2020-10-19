@@ -11,8 +11,12 @@ class SimpleSurveyComponent extends React.Component {
     };
   }
 
-  formInputChangeHandler = e=> {
+  onformInputChangeHandler = e=> {
     this.setState({full_name: e.target.value})
+  }
+
+  onSurveyFormSubmit=()=> {
+    console.log(this.state.full_name)
   }
 
   render(){
@@ -23,13 +27,16 @@ class SimpleSurveyComponent extends React.Component {
           <div>
             <label>
               Enter Full Name : 
-              <input type= "text" name= "full_name" value={this.state.full_name}>
+              <input type= "text" name= "full_name" value={this.state.full_name} onChange={this.onformInputChangeHandler}>
               </input>
             </label>
           </div>
         </form>
-        <button> Submit</button>
+        <button onClick={this.onSurveyFormSubmit}> Submit</button>
+        <div>
+        </div>
       </div>
+      
     )
   }
 }
