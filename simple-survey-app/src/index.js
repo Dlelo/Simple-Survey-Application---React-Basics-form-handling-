@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import UseForm from './component/use-form.component';
 
 
 class SimpleSurveyComponent extends React.Component {
@@ -10,8 +11,17 @@ class SimpleSurveyComponent extends React.Component {
     this.state = {
       respondent_data : {
         full_name: '',
+        gender: '',
         bio: '',
-        programming_languages: 'Choose Language',
+        programming_languages: '',
+      },
+      isError: {
+        respondent_data : {
+          full_name: '',
+          gender: '',
+          bio: '',
+          programming_languages: '',
+        },
       }
     };
      this.handleInputChange = this.onformInputChangeHandler.bind(this);
@@ -22,12 +32,27 @@ class SimpleSurveyComponent extends React.Component {
   onformInputChangeHandler = e=> {
     const name=e.target.name;
     const value=e.target.value === 'checkbox' ? e.target.checked : e.target.value;
+    let isError = {...this.state.isError};
 
+    switch (respondent_data.name) {
+      case "name":
+        isError.respondent_data.name =
+        value.length < 4? "Atleaset 4 characters required":"";
+        break;
+      case "bio":
+        isError.respondent_data.bio =
+        value.length < 4? "Atleaset 15 characters required":"";
+        break;
+
+    }
+    
     this.setState(
       {respondent_data: {
         ...this.state.respondent_data, 
         [name]:value
       }});
+    
+    
   }
 
   onSurveyFormSubmit= e=> {
@@ -50,6 +75,47 @@ class SimpleSurveyComponent extends React.Component {
             <br></br>
             <input  className="input" type= "text" name= "full_name" value={this.state.respondent_data.full_name} onChange={this.onformInputChangeHandler}>
               </input>
+          </div>
+          <div className="form-element">
+          <div className="radio">
+          <label>
+            <input
+              type="radio"
+              value="Male"
+              name="gender"
+              checked={this.state.respondent_data.gender === "Male"}
+              onChange={this.onformInputChangeHandler}
+            />
+            Male
+          </label>
+        </div>
+        <div className="radio">
+          <label>
+            <input
+              type="radio"
+              value="Female"
+              name="gender"
+              checked={this.state.respondent_data.gender  === "Female"}
+              onChange={this.onformInputChangeHandler}
+            />
+            Female
+          </label>
+        </div>
+        <div className="radio">
+          <label>
+            <input
+              type="radio"
+              value="Other"
+              name="gender"
+              checked={this.state.respondent_data.gender === "Other"}
+              onChange={this.onformInputChangeHandler}
+            />
+            Other
+          </label>
+        </div>
+        <div>
+          Selected option is : {this.state.respondent_data.gender}
+        </div>
           </div>
           <div className="form-element">
             <label>
