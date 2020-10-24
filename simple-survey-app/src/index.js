@@ -38,7 +38,6 @@ class SimpleSurveyComponent extends React.Component {
 
   onSurveyFormSubmit= e=> {
     e.preventDefault();
-     // console.log("Submitted response", this.state.respondent_data);
    if(this.state.respondent_data.full_name === "" && !this.state.respondent_data.full_name.length < 5) {
      alert("Please Enter your full Name");
    } else if(this.state.respondent_data.bio === ""&& this.state.respondent_data.bio.length < 15) {
