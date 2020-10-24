@@ -417,13 +417,43 @@ The form in the browser is as shown below:
 <img src="/doc-img/complete-form.png" alt="Complete form"/>
 
 ## Step 4 : Styling the form using CSS classes
-Since CSS classes are most recommended for site performance, I implemented the styles in the *index.css* file with the below classes which I added in the form
+Since CSS classes are most recommended for site performance, I implemented the styles in the *index.css* file with the below classes which I added in the form.
 
-The simple survey form after styling
+The simple survey form after styling.
 
 <img src="/doc-img/styled-survey-form.png" alt="Styled form"/>
 
 ## Step 5 : Validating form 
+### Disabling the submit button untill all inputs are filled.
+A function called *invalid()* noted below will be used to disable the **Submit** action button.
+
+```
+ isValid(){
+
+    if (this.state.respondent_data.full_name === "" ||
+    this.state.respondent_data.gender === "" ||
+    this.state.respondent_data.bio === "" ||
+    this.state.respondent_data.programming_languages ==="" ||
+    this.state.respondent_data.agree === false
+    ) {
+        return false
+    }
+    return true
+  }
+ 
+```
+
+Then, the *submit* button will include the **disabled** attribute as shown below:
+
+```
+ <button disabled={!this.isValid()} onClick={this.onSurveyFormSubmit}> Submit</button>
+
+```
+The simple survey application at this point will work as shown below
+
+[![IMAGE ALT TEXT HERE](https://www.youtube.com/watch?v=TpLRnamm6k8)](https://j.gifs.com/ZYJjn5.gif)
+
+
 
 
 

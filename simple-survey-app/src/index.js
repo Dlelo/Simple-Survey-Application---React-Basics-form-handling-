@@ -38,6 +38,7 @@ class SimpleSurveyComponent extends React.Component {
 
   onSurveyFormSubmit= e=> {
     e.preventDefault();
+     // console.log("Submitted response", this.state.respondent_data);
    if(this.state.respondent_data.full_name === "" && !this.state.respondent_data.full_name.length < 5) {
      alert("Please Enter your full Name");
    } else if(this.state.respondent_data.bio === ""&& this.state.respondent_data.bio.length < 15) {
@@ -46,13 +47,13 @@ class SimpleSurveyComponent extends React.Component {
     alert ("Please select a gender");
    } else if (this.state.respondent_data.programming_languages === "") {
     alert ("Please select a programming gender");
-  } else if (!this.state.respondent_data.agree === false) {
+  } else if (this.state.respondent_data.agree !== "on") {
     alert("Please agree to the terms and conditions");
   } else {
-    alert("Submitted Response", this.state.respondent_data )
+    console.log("Submitted response", this.state.respondent_data);
   }
-  console.log("submitted response", this.state.respondent_data );
-
+  
+  
   }
 
   isValid(){
@@ -61,7 +62,7 @@ class SimpleSurveyComponent extends React.Component {
     this.state.respondent_data.gender === "" ||
     this.state.respondent_data.bio === "" ||
     this.state.respondent_data.programming_languages ==="" ||
-    this.state.respondent_data.agree === false
+    this.state.respondent_data.agree !== "on"
     ) {
         return false
     }
@@ -75,7 +76,6 @@ class SimpleSurveyComponent extends React.Component {
         <div className="heading">
         <h3> Simple Survey Application</h3>
         </div>
-        <div> {this.displayerror}</div>
         <div className ="survey-form column">
         <form>
           <div className="form-element">
