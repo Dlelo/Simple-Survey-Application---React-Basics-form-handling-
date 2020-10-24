@@ -1,8 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import UseForm from './component/use-form.component';
-
 
 class SimpleSurveyComponent extends React.Component {
 
@@ -14,37 +12,20 @@ class SimpleSurveyComponent extends React.Component {
         gender: '',
         bio: '',
         programming_languages: '',
-      },
-      isError: {
-        respondent_data : {
-          full_name: '',
-          gender: '',
-          bio: '',
-          programming_languages: '',
-        },
+        agree: false
       }
+
     };
-     this.handleInputChange = this.onformInputChangeHandler.bind(this);
-     this.handleFormSubmit = this.onSurveyFormSubmit.bind(this);
+     this.onformInputChangeHandler = this.onformInputChangeHandler.bind(this);
+     this.onSurveyFormSubmit = this.onSurveyFormSubmit.bind(this);
 
   }
 
   onformInputChangeHandler = e=> {
     const name=e.target.name;
     const value=e.target.value === 'checkbox' ? e.target.checked : e.target.value;
-    let isError = {...this.state.isError};
-
-    switch (respondent_data.name) {
-      case "name":
-        isError.respondent_data.name =
-        value.length < 4? "Atleaset 4 characters required":"";
-        break;
-      case "bio":
-        isError.respondent_data.bio =
-        value.length < 4? "Atleaset 15 characters required":"";
-        break;
-
-    }
+    // const value=e.target.value
+    
     
     this.setState(
       {respondent_data: {
@@ -57,8 +38,36 @@ class SimpleSurveyComponent extends React.Component {
 
   onSurveyFormSubmit= e=> {
     e.preventDefault();
-    console.log(this.state.respondent_data);
+   if(this.state.respondent_data.full_name === "" && !this.state.respondent_data.full_name.length < 5) {
+     alert("Please Enter your full Name");
+   } else if(this.state.respondent_data.bio === ""&& this.state.respondent_data.bio.length < 15) {
+     alert("Please Enter a mimimum of 15 characters in the bio");
+   } else if (this.state.respondent_data.gender === "") {
+    alert ("Please select a gender");
+   } else if (this.state.respondent_data.programming_languages === "") {
+    alert ("Please select a programming gender");
+  } else if (!this.state.respondent_data.agree === false) {
+    alert("Please agree to the terms and conditions");
+  } else {
+    alert("Submitted Response", this.state.respondent_data )
   }
+  console.log("submitted response", this.state.respondent_data );
+
+  }
+
+  isValid(){
+
+    if (this.state.respondent_data.full_name === "" ||
+    this.state.respondent_data.gender === "" ||
+    this.state.respondent_data.bio === "" ||
+    this.state.respondent_data.programming_languages ==="" ||
+    this.state.respondent_data.agree === false
+    ) {
+        return false
+    }
+    return true
+  }
+ 
 
   render(){
     return(
@@ -66,6 +75,7 @@ class SimpleSurveyComponent extends React.Component {
         <div className="heading">
         <h3> Simple Survey Application</h3>
         </div>
+        <div> {this.displayerror}</div>
         <div className ="survey-form column">
         <form>
           <div className="form-element">
@@ -73,8 +83,15 @@ class SimpleSurveyComponent extends React.Component {
               Enter Full Name : 
             </label>
             <br></br>
-            <input  className="input" type= "text" name= "full_name" value={this.state.respondent_data.full_name} onChange={this.onformInputChangeHandler}>
-              </input>
+            <input  
+            className="input" 
+            type= "text" 
+            name= "full_name" 
+            value={this.state.respondent_data.full_name} 
+            onChange={this.onformInputChangeHandler}
+            >
+            </input>
+          
           </div>
           <div className="form-element">
           <div className="radio">
@@ -141,17 +158,21 @@ class SimpleSurveyComponent extends React.Component {
           <input
                 name="agree"
                 type="checkbox"
-                checked={this.state.isGoing}
-                onChange={this.handleInputChange} />
+                checked={this.state.respondent_data.agree}
+                onChange={this.onformInputChangeHandler} />
             <label>
             I agree to Terms and Conditions
             </label>
             
           </div>
           <div>
-          <button onClick={this.onSurveyFormSubmit}> Submit</button>
+          <button disabled={!this.isValid()} onClick={this.onSurveyFormSubmit}> Submit</button>
           </div>
+          <br></br>
         </form>
+        </div>
+        <div>
+          
         </div>
         
         

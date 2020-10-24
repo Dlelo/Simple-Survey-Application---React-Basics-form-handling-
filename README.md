@@ -421,9 +421,11 @@ Since CSS classes are most recommended for site performance, I implemented the s
 
 The simple survey form after styling
 
-<img src="/doc-img/styled-survey.png" alt="Styled form"/>
+<img src="/doc-img/styled-survey-form.png" alt="Styled form"/>
 
-## Step 5 : Validating form using React Hooks
+## Step 5 : Validating form 
+
+
 
 
 
