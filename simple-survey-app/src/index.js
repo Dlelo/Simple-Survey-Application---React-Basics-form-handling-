@@ -40,18 +40,17 @@ class SimpleSurveyComponent extends React.Component {
     e.preventDefault();
    if(this.state.respondent_data.full_name === "" && !this.state.respondent_data.full_name.length < 5) {
      alert("Please Enter your full Name");
-   } else if(this.state.respondent_data.bio === ""&& this.state.respondent_data.bio.length < 15) {
-     alert("Please Enter a mimimum of 15 characters in the bio");
-   } else if (this.state.respondent_data.gender === "") {
-    alert ("Please select a gender");
+   }  else if (this.state.respondent_data.gender === "") {
+    alert ("Please choose gender");
    } else if (this.state.respondent_data.programming_languages === "") {
-    alert ("Please select a programming gender");
+    alert ("Please select a programming language");
+  } else if(this.state.respondent_data.bio === ""&& this.state.respondent_data.bio.length < 15) {
+    alert("Please Enter a mimimum of 15 characters in the bio");
   } else if (this.state.respondent_data.agree !== "on") {
     alert("Please agree to the terms and conditions");
   } else {
     console.log("Submitted response", this.state.respondent_data);
   }
-  
   
   }
 
