@@ -166,7 +166,7 @@ class SimpleSurveyComponent extends React.Component {
             
           </div>
           <div>
-          <button disabled={!this.isValid()} onClick={this.onSurveyFormSubmit}> Submit</button>
+          <button onClick={this.onSurveyFormSubmit}> Submit</button>
           </div>
           <br></br>
         </form>

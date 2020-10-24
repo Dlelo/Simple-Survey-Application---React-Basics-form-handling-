@@ -424,7 +424,7 @@ The simple survey form after styling.
 <img src="/doc-img/styled-survey-form.png" alt="Styled form"/>
 
 ## Step 5 : Validating form 
-### Disabling the submit button untill all inputs are filled.
+### Form validation: Disabling the submit button untill all inputs are filled.
 A function called *invalid()* noted below will be used to disable the **Submit** action button.
 
 ```
@@ -451,7 +451,35 @@ Then, the *submit* button will include the **disabled** attribute as shown below
 ```
 The simple survey application at this point will work as shown below
 
-[![IMAGE ALT TEXT HERE](https://www.youtube.com/watch?v=TpLRnamm6k8)](https://j.gifs.com/ZYJjn5.gif)
+[![CLICK HERE TO SEE DEMO](https://www.youtube.com/watch?v=TpLRnamm6k8)](https://j.gifs.com/ZYJjn5.gif)
+
+### Form validation: validating input values submitted by user.
+The other way to validate the form is to check the input submitted by a user and ensure it matches the needed criteria.
+
+This is done by adding the below validation in the submit button method **onSurveyFormSubmit()**. The method will look as below.
+
+```
+onSurveyFormSubmit= e=> {
+    e.preventDefault();
+     // console.log("Submitted response", this.state.respondent_data);
+   if(this.state.respondent_data.full_name === "" && !this.state.respondent_data.full_name.length < 5) {
+     alert("Please Enter your full Name");
+   } else if(this.state.respondent_data.bio === ""&& this.state.respondent_data.bio.length < 15) {
+     alert("Please Enter a mimimum of 15 characters in the bio");
+   } else if (this.state.respondent_data.gender === "") {
+    alert ("Please select a gender");
+   } else if (this.state.respondent_data.programming_languages === "") {
+    alert ("Please select a programming gender");
+  } else if (this.state.respondent_data.agree !== "on") {
+    alert("Please agree to the terms and conditions");
+  } else {
+    console.log("Submitted response", this.state.respondent_data);
+  }
+  
+  
+  }
+```
+
 
 
 
