@@ -1,4 +1,4 @@
-# Simple-Survey-Application---React-Basics-form-handling
+# Simple-Survey-Application---Reactjs-Basics-form-handling
 
 ## Introduction
 Form are necessary in an application. They are used to login a user, register a user, get user feeback, get user details and so much more. 
@@ -136,7 +136,7 @@ The output
 <img src="/doc-img/simple-form.png" alt="Remove defaults in indexjs"/>
 
 
-## Step 3 : Controlled Input
+## Step 3 : Controlled Component (Input)
 
 In this simple survey app, react will control the values of the input field . 
 
@@ -157,33 +157,334 @@ constructor(props) {
   }
 
 ```
-## Step 4 : Managing forms State
+###
 
-We bind the value of the input text field to the value from the **state object**.
+We bind the value of the input text field and the value is obtained from the value of the **state object**.
 
 ```
 <input type= "text" name= "full_name" value={this.state.full_name}>
               </input> 
 ```
 
-A method called *inputChangeHandler*(e) is created, that will accept an input which will have the information of entered form input field value in this case the input text value. 
-It will have a *setState()* method that will inject the form text input value to the **State Object**
+A method called *forinputChangeHandler*(e) is created, that will accept an input which will have the information of entered form input field value in this case the input text value. 
+It will have a *setState()* method that will update the value of form text input value to the **State Object** . 
 
 ```
-formInputChangeHandler = e=> {
-    this.setState({full_name: e.target.value})
+onformInputChangeHandler = e=> {
+    this.setState(
+      {full_name: e.target.value}
+      )
   }
 
 ```
+The above method will listen to the text input whenever there is a change in the input using the **onChange()** the input attribute it will be set back to the above property named *full_name* to the updated value.
+
+Once the state is set, react calls the *render* method again and the new value is available in the form input value as shown below.
+
+```
+<input type= "text" name= "full_name" value={this.state.full_name} onChange={this.onformInputChangeHandler}>
+              </input>
+```
+
+### Since we are working with controlled components at this point the react state is the single source of truth  for the above input element
+
+We will create a method to handle form submit. This will output the **full_name** on the console.
+
+```
+onSurveyFormSubmit=()=> {
+    console.log(this.state.full_name)
+  }
+```
+
+We will then add a click event on the Submit button. 
+
+```
+ <button onclick={this.onSurveyFormSubmit}> Submit</button>
+```
+
+The code so far will be as below:
+
+```
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+
+class SimpleSurveyComponent extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      full_name: ''
+    };
+  }
+
+  onformInputChangeHandler = e=> {
+    this.setState({full_name: e.target.value})
+  }
+
+  onSurveyFormSubmit=()=> {
+    console.log(this.state.full_name)
+  }
+
+  render(){
+    return(
+      <div>
+        <h3> Simple Survey Application</h3>
+        <form>
+          <div>
+            <label>
+              Enter Full Name : 
+              <input type= "text" name= "full_name" value={this.state.full_name} onChange={this.onformInputChangeHandler}>
+              </input>
+            </label>
+          </div>
+        </form>
+        <button onClick={this.onSurveyFormSubmit}> Submit</button>
+        <div>
+        </div>
+      </div>
+      
+    )
+  }
+}
+
+const element= <SimpleSurveyComponent></SimpleSurveyComponent>
+ReactDOM.render(element, document.getElementById("root"));
+
+```
+The output on the browser:
+<img src="/doc-img/submit-form.png" alt="Remove defaults in indexjs"/>
+
+
+## Step 4 : Handling multiple inputs
+To handle more than one form input element, we will modify our state component with an object that initializes the various properties.
+```
+ constructor(props) {
+    super(props);
+    this.state = {
+      respondent_data : {
+        full_name: '',
+        bio: '',
+        programming_languages: 'Choose Language',
+      }   
+    };
+  }
+```
+We will also modify the **onformInputChangeHandler()** method to handle all the form inputs *onChange()* event and update the *state Object* using the **setState()** method.
+It will have the element *name* that the user is changing and *value*
+
+```
+onformInputChangeHandler = e=> {
+    const name=e.target.name;
+    const value=e.target.value;
+
+    this.setState(
+      {respondent_data: {
+        ...this.state.respondent_data, 
+        [name]:value
+      }});
+  }
+```
+
+### Adding Select Tag
+The following *Div* was added in the form
+
+```
+ <div>
+  <label>
+    Choose the Programming Languages you use : 
+    <select name="programming_languages" value={this.state.respondent_data.programming_languages} onChange={this.onformInputChangeHandler}>
+      <option value="Javascript">Javascript</option>
+      <option value="CSS">CSS</option>
+      <option value="Python">Python</option>
+      <option value="C++">C++</option>
+    </select>
+  </label>
+</div>
+
+```
+To ensure the selected element is updates the state object with the selected value. The below lines were added in the  *constructor* .
+
+```
+ this.handleInputChange = this.onformInputChangeHandler.bind(this);
+
+  this.handleFormSubmit = this.onSurveyFormSubmit.bind(this);
+
+```
+
+The method **onformInputChangeHandler()** is updated to accomodate the checkbox selected input by listening if it checked and updating the selected value tp the one that was ched.
+
+```
+const value=e.target.value === 'checkbox' ? e.target.checked : e.target.value;
+
+```
+
+This is how the code looks like with all the form inputs.
+
+```
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+
+class SimpleSurveyComponent extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      respondent_data : {
+        full_name: '',
+        bio: '',
+        programming_languages: 'Choose Language',
+      }
+    };
+     this.handleInputChange = this.onformInputChangeHandler.bind(this);
+     this.handleFormSubmit = this.onSurveyFormSubmit.bind(this);
+
+  }
+
+  onformInputChangeHandler = e=> {
+    const name=e.target.name;
+    const value=e.target.value === 'checkbox' ? e.target.checked : e.target.value;
+
+    this.setState(
+      {respondent_data: {
+        ...this.state.respondent_data, 
+        [name]:value
+      }});
+  }
+
+  onSurveyFormSubmit= e=> {
+    e.preventDefault();
+    console.log(this.state.respondent_data);
+  }
+
+  render(){
+    return(
+      <div>
+        <h3> Simple Survey Application</h3>
+        <form>
+          <div>
+            <label>
+              Enter Full Name : 
+              <input type= "text" name= "full_name" value={this.state.respondent_data.full_name} onChange={this.onformInputChangeHandler}>
+              </input>
+            </label>
+          </div>
+          <div>
+            <label>
+              Select the Language you use most : 
+              <select name="programming_languages" value={this.state.respondent_data.programming_languages} onChange={this.onformInputChangeHandler}>
+                <option value="Javascript">Javascript</option>
+                <option value="C++">C++</option>
+                <option value="Python">Python</option>
+                <option value="Java">Java</option>
+              </select>
+            </label>
+          </div>
+          <div>
+            <label>
+              Bio : 
+              <textarea type= "text" name= "bio" value={this.state.respondent_data.bio} onChange={this.onformInputChangeHandler}>
+              </textarea>
+            </label>
+          </div>
+          <div>
+            <label>
+              <input
+                name="agree"
+                type="checkbox"
+                checked={this.state.isGoing}
+                onChange={this.handleInputChange} />
+                 I agree to Terms and Conditions
+            </label>
+          </div>
+        </form>
+        <button onClick={this.onSurveyFormSubmit}> Submit</button>
+        <div>
+        </div>
+      </div>
+      
+    )
+  }
+}
+
+const element= <SimpleSurveyComponent></SimpleSurveyComponent>
+ReactDOM.render(element, document.getElementById("root"));
+
+```
+
+The form in the browser is as shown below:
+<img src="/doc-img/complete-form.png" alt="Complete form"/>
+
+## Step 4 : Styling the form using CSS classes
+Since CSS classes are most recommended for site performance, I implemented the styles in the *index.css* file with the below classes which I added in the form.
+
+The simple survey form after styling.
+
+<img src="/doc-img/styled-survey-form.png" alt="Styled form"/>
+
+## Step 5 : Validating form 
+
+### Form validation: validating input values submitted by user.
+The other way to validate the form is to check the input submitted by a user and ensure it matches the needed criteria.
+
+This is done by adding the below validation in the submit button method **onSurveyFormSubmit()**. The method will look as below.
+
+```
+oonSurveyFormSubmit= e=> {
+    e.preventDefault();
+   if(this.state.respondent_data.full_name === "" && !this.state.respondent_data.full_name.length < 5) {
+     alert("Please Enter your full Name");
+   }  else if (this.state.respondent_data.gender === "") {
+    alert ("Please choose gender");
+   } else if (this.state.respondent_data.programming_languages === "") {
+    alert ("Please select a programming language");
+  } else if(this.state.respondent_data.bio === ""&& this.state.respondent_data.bio.length < 15) {
+    alert("Please Enter a mimimum of 15 characters in the bio");
+  } else if (this.state.respondent_data.agree !== "on") {
+    alert("Please agree to the terms and conditions");
+  } else {
+    console.log("Submitted response", this.state.respondent_data);
+  } 
+  
+  }
+```
+The simple survey form with the above validation will work as shown below
+
+[![CLICK HERE TO SEE DEMO](https://www.youtube.com/watch?v=TpLRnamm6k8)](https://j.gifs.com/k8mEEx.gif)
+
+### Form validation: Disabling the submit button untill all inputs are filled.
+A function called *invalid()* noted below will be used to disable the **Submit** action button.
+
+```
+ isValid(){
+
+    if (this.state.respondent_data.full_name === "" ||
+    this.state.respondent_data.gender === "" ||
+    this.state.respondent_data.bio === "" ||
+    this.state.respondent_data.programming_languages ==="" ||
+    this.state.respondent_data.agree === false
+    ) {
+        return false
+    }
+    return true
+  }
+ 
+```
+
+Then, the *submit* button will include the **disabled** attribute as shown below:
+
+```
+ <button disabled={!this.isValid()} onClick={this.onSurveyFormSubmit}> Submit</button>
+
+```
+The simple survey application at this point will work as shown below
+
+[![CLICK HERE TO SEE DEMO](https://www.youtube.com/watch?v=TpLRnamm6k8)](https://j.gifs.com/ZYJjn5.gif)
 
 
 
 
-
-
-
-
-## Step 5 : Validating forms and show validation messages
 
 
 
