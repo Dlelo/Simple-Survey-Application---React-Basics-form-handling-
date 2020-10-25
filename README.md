@@ -423,7 +423,7 @@ The simple survey form after styling.
 
 <img src="/doc-img/styled-survey-form.png" alt="Styled form"/>
 
-## Step 5 : Validating form 
+## Step 5 : Validating controlled input form 
 
 ### Form validation: validating input values submitted by user.
 The other way to validate the form is to check the input submitted by a user and ensure it matches the needed criteria.
@@ -481,11 +481,5 @@ Then, the *submit* button will include the **disabled** attribute as shown below
 The simple survey application at this point will work as shown below
 
 [![CLICK HERE TO SEE DEMO](https://www.youtube.com/watch?v=TpLRnamm6k8)](https://j.gifs.com/ZYJjn5.gif)
-
-
-
-
-
-
 
 
