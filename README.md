@@ -1,9 +1,9 @@
 # Simple-Survey-Application---Reactjs-Basics-form-handling
 
 ## Introduction
-Form are necessary in an application. They are used to login a user, register a user, get user feeback, get user details and so much more. 
+Form are necessary in an application to login a user, register a user, get user feeback, get user details and so much more. 
 
-This tutorial is useful for beginners who have never interracted with react, those who have little knowledge on react as well as the expert react developers who want a reminder on the basics of handling react forms.
+This tutorial is useful to beginners who have never interacted with react. Those who have little knowledge on react. It is also a good reminder to expert react developers who want a reminder on the basics of handling react forms.
 
 ## Step 1 : Set-up 
 ### Download NodeJs (Windows)
@@ -19,7 +19,7 @@ $ sudo apt install nodejs
 
 ```
 
-02. Confirm NodeJs is installed by confirming the version with the command
+02. Confirm NodeJs installation by confirming the version with the command
 
 ```
 $ node --version
@@ -39,7 +39,7 @@ $ sudo apt install npm
 
 ```
 
-04. Confirm npm is installed by confirming the version with the command
+04. Confirm npm installation by confirming the version with the command
 
 ```
 $ npm --version
@@ -52,7 +52,7 @@ $ npm --version
 
 ```
 
-05. Install text editor such as VisualStudio Code (You can use your prefered text editor)
+05. Install text editor such as VisualStudio Code (You can use your prefered text editor).
 Follow Download and installation instructions in [Visual Studio Website](https://code.visualstudio.com/download).
 <img src="/doc-img/vscodesite.png" alt="Visual Studio Code"/>
 
@@ -166,7 +166,7 @@ We bind the value of the input text field and the value is obtained from the val
               </input> 
 ```
 
-A method called *forinputChangeHandler*(e) is created, that will accept an input which will have the information of entered form input field value in this case the input text value. 
+A method called *forinputChangeHandler*(e) is created. It will accept an input which will have the information of entered form input field value in this case the input text value. 
 It will have a *setState()* method that will update the value of form text input value to the **State Object** . 
 
 ```
@@ -177,16 +177,15 @@ onformInputChangeHandler = e=> {
   }
 
 ```
-The above method will listen to the text input whenever there is a change in the input using the **onChange()** the input attribute it will be set back to the above property named *full_name* to the updated value.
+The above method will listen to the text input whenever there is a change in the input using the **onChange()**. The input attribute it will be set back to the above property named *full_name* to the updated value.
 
-Once the state is set, react calls the *render* method again and the new value is available in the form input value as shown below.
+Once the state is set, react calls the *render* method again and the new value is available in the form input value as shown below. The react state is the single source of truth  for the below input.
+ 
 
 ```
 <input type= "text" name= "full_name" value={this.state.full_name} onChange={this.onformInputChangeHandler}>
               </input>
 ```
-
-### Since we are working with controlled components at this point the react state is the single source of truth  for the above input element
 
 We will create a method to handle form submit. This will output the **full_name** on the console.
 
@@ -257,7 +256,7 @@ The output on the browser:
 
 
 ## Step 4 : Handling multiple inputs
-To handle more than one form input element, we will modify our state component with an object that initializes the various properties.
+We will modify our state component to handle more than one form element. We will introduce an object that will initializes the various properties as empty strings.
 ```
  constructor(props) {
     super(props);
@@ -312,7 +311,7 @@ To ensure the selected element is updates the state object with the selected val
 
 ```
 
-The method **onformInputChangeHandler()** is updated to accomodate the checkbox selected input by listening if it checked and updating the selected value tp the one that was ched.
+The method **onformInputChangeHandler()** is updated . It will accommodate the checkbox selected input by listening if it checked and updating the selected value to the checked value.
 
 ```
 const value=e.target.value === 'checkbox' ? e.target.checked : e.target.value;
@@ -417,7 +416,7 @@ The form in the browser is as shown below:
 <img src="/doc-img/complete-form.png" alt="Complete form"/>
 
 ## Step 4 : Styling the form using CSS classes
-Since CSS classes are most recommended for site performance, I implemented the styles in the *index.css* file with the below classes which I added in the form.
+CSS classes are most recommended for site performance. I implemented the styles in the *index.css* file with the below classes which I added in the form.
 
 The simple survey form after styling.
 
@@ -426,12 +425,12 @@ The simple survey form after styling.
 ## Step 5 : Validating controlled input form 
 
 ### Form validation: validating input values submitted by user.
-The other way to validate the form is to check the input submitted by a user and ensure it matches the needed criteria.
+We will validate the form further . We will check the input submitted by a user and ensuring it matches the needed criteria.
 
-This is done by adding the below validation in the submit button method **onSurveyFormSubmit()**. The method will look as below.
+Adding the below validation in the submit button method **onSurveyFormSubmit()**. The method will look as below.
 
 ```
-oonSurveyFormSubmit= e=> {
+onSurveyFormSubmit= e=> {
     e.preventDefault();
    if(this.state.respondent_data.full_name === "" && !this.state.respondent_data.full_name.length < 5) {
      alert("Please Enter your full Name");
@@ -453,8 +452,8 @@ The simple survey form with the above validation will work as shown below
 
 [SEE DEMO ](https://www.facebook.com/100000900405696/videos/4928089517231013/) .
 
-### Form validation: Disabling the submit button untill all inputs are filled.
-A function called *invalid()* noted below will be used to disable the **Submit** action button.
+### Form validation: Disabling the submit button until all inputs are filled.
+A function called *invalid()* noted below will disable the **Submit** action button.
 
 ```
  isValid(){
