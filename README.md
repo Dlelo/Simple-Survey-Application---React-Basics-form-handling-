@@ -451,7 +451,7 @@ oonSurveyFormSubmit= e=> {
 ```
 The simple survey form with the above validation will work as shown below
 
-[![CLICK HERE TO SEE DEMO](https://www.youtube.com/watch?v=TpLRnamm6k8)](https://j.gifs.com/k8mEEx.gif)
+[SEE DEMO ](https://www.facebook.com/100000900405696/videos/4928089517231013/) .
 
 ### Form validation: Disabling the submit button untill all inputs are filled.
 A function called *invalid()* noted below will be used to disable the **Submit** action button.
@@ -480,6 +480,6 @@ Then, the *submit* button will include the **disabled** attribute as shown below
 ```
 The simple survey application at this point will work as shown below
 
-[![CLICK HERE TO SEE DEMO](https://www.youtube.com/watch?v=TpLRnamm6k8)](https://j.gifs.com/ZYJjn5.gif)
+[SEE DEMO ](https://www.facebook.com/100000900405696/videos/4928089517231013/) .
 
 
